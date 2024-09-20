@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import ArtCalendar from "@/components/ArtCalendar";
 import { Button } from "@/components/ui/button";
+import ScheduleTable from "@/components/ArtScheduleTable";
 import { ArtSchedule, generateArtSchedule } from "../utils/artGenerator";
 
 const sampleSchedule: ArtSchedule = {
@@ -35,6 +36,10 @@ export default function Home() {
     }));
   };
 
+  const handleClearSchedule = () => {
+    setSchedule({});
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-6xl w-full items-center justify-between font-mono text-sm">
@@ -44,8 +49,16 @@ export default function Home() {
           year={year}
           onDateClick={handleDateClick}
         />
+        <div className="mt-12 flex justify-center space-x-4">
+          <Button onClick={handleGenerateSchedule}>
+            Generate Art Schedule
+          </Button>
+          <Button onClick={handleClearSchedule} variant="outline">
+            Clear Art Schedule
+          </Button>
+        </div>
+        <ScheduleTable schedule={schedule} />
       </div>
-      <Button onClick={handleGenerateSchedule}>Generate Art Schedule</Button>
     </main>
   );
 }

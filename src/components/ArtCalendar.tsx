@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { ArtSchedule } from "../utils/artGenerator";
+
 import {
   Tooltip,
   TooltipContent,
