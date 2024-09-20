@@ -28,12 +28,22 @@ export default function Home() {
     setSchedule(newSchedule);
   };
 
+  const handleDateClick = (date: string) => {
+    setSchedule((prevSchedule) => ({
+      ...prevSchedule,
+      [date]: (prevSchedule[date] || 0) + 1,
+    }));
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-6xl w-full items-center justify-between font-mono text-sm">
         <h1 className="text-4xl font-bold mb-8">Art Calendar</h1>
-        <ArtCalendar schedule={schedule} year={year} />{" "}
-        {/* Changed prop name */}
+        <ArtCalendar
+          schedule={schedule}
+          year={year}
+          onDateClick={handleDateClick}
+        />
       </div>
       <Button onClick={handleGenerateSchedule}>Generate Art Schedule</Button>
     </main>

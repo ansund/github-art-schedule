@@ -9,11 +9,16 @@ import {
 } from "@/components/ui/tooltip";
 
 interface ArtCalendarProps {
-  schedule: ArtSchedule; // Changed from initialSchedule
+  schedule: ArtSchedule;
   year: number;
+  onDateClick: (date: string) => void;
 }
 
-const ArtCalendar: React.FC<ArtCalendarProps> = ({ schedule, year }) => {
+const ArtCalendar: React.FC<ArtCalendarProps> = ({
+  schedule,
+  year,
+  onDateClick,
+}) => {
   // Remove this line:
   // const [schedule, setSchedule] = useState<ScheduleData>(initialSchedule);
 
@@ -22,7 +27,6 @@ const ArtCalendar: React.FC<ArtCalendarProps> = ({ schedule, year }) => {
     const colors = [
       "bg-gray-100",
       "bg-green-50",
-      "bg-green-100",
       "bg-green-200",
       "bg-green-300",
       "bg-green-400",
@@ -31,14 +35,13 @@ const ArtCalendar: React.FC<ArtCalendarProps> = ({ schedule, year }) => {
       "bg-green-700",
       "bg-green-800",
       "bg-green-900",
+      "bg-green-900",
     ];
     return colors[Math.min(value, 10)];
   };
 
   const handleCellClick = (date: string) => {
-    // This function should now emit an event to update the parent's state
-    // For now, we'll just log it
-    console.log(`Cell clicked: ${date}`);
+    onDateClick(date);
   };
 
   const renderCell = (date: Date) => {
@@ -106,7 +109,7 @@ const ArtCalendar: React.FC<ArtCalendarProps> = ({ schedule, year }) => {
         <div className="flex justify-end items-center mt-2 text-xs text-gray-400">
           <span>Less</span>
           <div className="flex gap-1 ml-2">
-            {[0, 2, 4, 6, 8, 10].map((value) => (
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
               <div key={value} className={`w-4 h-4 ${getColor(value, true)}`} />
             ))}
           </div>
